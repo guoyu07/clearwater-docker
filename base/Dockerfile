@@ -6,6 +6,7 @@ RUN mkdir -p /var/run/sshd /var/log/supervisor
 RUN echo 'root:root' | chpasswd
 RUN sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 EXPOSE 22
+COPY supervisord-sys.conf /etc/supervisor/supervisord.conf
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
 
